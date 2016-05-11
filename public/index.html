@@ -6,23 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <ul class="pages">
-    <li class="chat page">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      <input class="inputMessage" placeholder="Type here..."/>
-    </li>
-    <li class="login page">
-      <div class="form">
-        <h3 class="title">What's your nickname?</h3>
-        <input class="usernameInput" type="text" maxlength="14" />
-      </div>
-    </li>
-  </ul>
+<div id="content"></div>
 
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="/main.js"></script>
+<script type="text/javascript">
+    var content = document.getElementById('content');
+    var socket = new WebSocket('ws://localhost:1337');
+    socket.onopen = function () {
+        socket.send('Client connected');
+    };
+
+    socket.onmessage = function (message) {
+        content.innerHTML += message.data +'<br />';
+    };
+
+    socket.onerror = function (error) {
+        console.log('WebSocket error: ' + error);
+    };
+</script>
 </body>
 </html>
