@@ -14,6 +14,10 @@ app.use(express.static(__dirname + '/public'));
 
 // Chatroom
 
+var socket = new server({
+    httpServer: server
+});
+
 socket.on('request', function(request) {
     var connection = request.accept(null, request.origin);
 
