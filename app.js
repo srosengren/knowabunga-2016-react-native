@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Chatroom
 
-var socket = new server({
+var socket = new wsServer({
     httpServer: server
 });
 
@@ -22,7 +22,7 @@ socket.on('request', function(request) {
     var connection = request.accept(null, request.origin);
 
     connection.on('message', function(message) {
-        connection.sendUTF(message);
+        connection.sendUTF(JSON.stringify(message.utf8Data));
     });
 
     connection.on('close', function(connection) {
