@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <input type="text" id="message" />
+    <button type="button" id="submit">Send</button>
 <div id="content"></div>
 
 <script type="text/javascript">
@@ -22,6 +24,13 @@
     socket.onerror = function (error) {
         console.log('WebSocket error: ' + error);
     };
+    
+    document.getElementById('submit').onclick = function(){
+        socket.send(JSON.stringify({
+            type:'message',
+            content: document.getElementById('message').value
+        }));
+    }
 </script>
 </body>
 </html>
