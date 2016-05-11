@@ -1,5 +1,5 @@
 {
-  "name": "Knowabunga react-native chat",
+  "name": "Knowabunga-react-native-chat",
   "version": "0.0.0",
   "description": "A simple chat client using socket.io",
   "main": "app.js",
