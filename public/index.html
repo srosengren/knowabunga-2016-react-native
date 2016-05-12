@@ -28,6 +28,7 @@
     document.getElementById('submit').onclick = function(){
         socket.send(JSON.stringify({
             type:'message',
+            username: 'web',
             content: document.getElementById('message').value
         }));
     }
